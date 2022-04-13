@@ -7,27 +7,36 @@ public class DataLoader {
 	private String[][] dataValues;
 	private int[] dataValuesLens;
 	
-	private int productCount, len;
+	private int currentPKValue, len;
+	
 	private String table;
+	
 	
 
 	private String sqlQuestionMarks = "?,";
 	private Connection connection;
 	private DBHandler handler;
 	
-	public DataLoader(String[][] dataValues, String table) {
+	public DataLoader(String[][] dataValues, String table, int currentPKValue) {
 		this.dataValues = dataValues;
 		this.table = table;
 
 		len = dataValues.length; 
 		this.dataValuesLens = new int[len];
-		
+	
+
 		//Please test me before running.
-		sqlQuestionMarks.repeat(len); // create the ?,?,?,? in the insert statement portion. 
-		sqlQuestionMarks =  sqlQuestionMarks.substring(0, len-2); //remove extra comma. 
+		// create the ?,?,?,? in the insert statement portion. 
+		//The pk values are not included in the dataValues to account for those by adding 1. 
+		sqlQuestionMarks = sqlQuestionMarks.repeat(len+1); 		
+		sqlQuestionMarks =  sqlQuestionMarks.substring(0, (len+1)*2-1); //remove extra comma. 
+		System.out.println("len: " + len);
+		System.out.println("sqlQuestionMarks: " + sqlQuestionMarks);
 		//Please test me before running.
-		
+
 		fillValuesLength();
+
+		this.currentPKValue = currentPKValue;
 
 		handler = new DBHandler();
 	}
@@ -51,14 +60,18 @@ public class DataLoader {
 			System.out.println("Connected With the database successfully.");
 			PreparedStatement preparedStatement = connection.prepareStatement("insert into " + table +" values("+ sqlQuestionMarks +")");
 			
-			
+			int count = 2;
 			for(int i = 0; i < rows; i++) {
+
+				preparedStatement.setString(1, Integer.toString(currentPKValue)); // The Primary key must be hardcoded. 
 				
 				for(int j = 0 ; j < len; j++){
-					preparedStatement.setString((j+1), dataValues[j][getRandomNumber(0, dataValuesLens[j] )]);
+					preparedStatement.setString((count), dataValues[j][getRandomNumber(0, dataValuesLens[j] )]);
+					count++;
 				}
-			
-				// productCount += 1;
+
+				count = 2;
+				currentPKValue += 1;
 				
 				preparedStatement.executeUpdate();
 			}
@@ -69,7 +82,23 @@ public class DataLoader {
 		}
 	}
 	
+	public int getCurrentPKvalue(){
+		return currentPKValue;
+	}
 	
+	public void testFunction(){
+		try  {
+			connection = handler.getConnection();
+			System.out.println("Connection Succesful.");
+		} catch (Exception e) {
+			
+			System.err.println("Error Connecting to DB :");
+			e.printStackTrace();
+			System.exit(1);
+			
+		}
+	}
+
 	//Create setter methods
 	 
 }

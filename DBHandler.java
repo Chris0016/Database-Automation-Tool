@@ -13,7 +13,7 @@ public class DBHandler extends Configs{
 			try{
 				Class.forName("com.mysql.cj.jdbc.Driver");	
 			}catch(Exception e){
-				System.out.println("Error in DBHandler Class: ");
+				System.err.println("Error in DBHandler Class: ");
 				e.printStackTrace();
 				System.exit(1);
 

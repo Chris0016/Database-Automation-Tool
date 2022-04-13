@@ -3,13 +3,13 @@ public class Main {
 			final int MAX_PRICE = 2000;
             final int MIN_NUM = 100_000_0000;
             final int ROWS = 100;
-            String table = "products";
+            String table = "students";
 
             String basePath = ".\\resources\\";
 
 			FileLoader bLoader = new FileLoader();
-			String[] departments = bLoader.load(basePath + "departments.csv");
-			String[] emails  = bLoader.load(basePath + "ProductNames.txt");
+			String[] departments = bLoader.load(basePath + "departments.txt");
+			String[] emails  = bLoader.load(basePath + "emails.txt");
 			String[] firstNames = bLoader.load(basePath + "first-names.txt");
             String[] lastNames = firstNames;			
 			String[] phoneNumbers = generateRandomNumberList(MIN_NUM, MIN_NUM*2, ROWS);
@@ -26,14 +26,15 @@ public class Main {
                 ages,
                 randNumbers, //Credits
                 years
-
             };
 
 			int rows = 10;
+			int currentPKValue = 1;
 			
-			
-			DataLoader dPop = new DataLoader(studentTableValues, table);
-			dPop.populateDatabase(rows);
+			DataLoader dPop = new DataLoader(studentTableValues, table, currentPKValue);
+			//dPop.testFunction();
+            dPop.populateDatabase(10);
+            currentPKValue = dPop.getCurrentPKvalue();
 			
 		}
 
