@@ -1,0 +1,87 @@
+CREATE SCHEMA `university_30603a` ;
+
+
+CREATE TABLE `university_30603a`.`students` (
+  `studentid` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `phone` INT(10) NOT NULL,
+  `age` INT NULL,
+  `credits` INT NOT NULL,
+  `year` INT NULL,
+  PRIMARY KEY (`studentid`),
+  UNIQUE INDEX `studentid_UNIQUE` (`studentid` ASC) VISIBLE);
+
+  CREATE TABLE `university_30603a`.`` (
+  `departmentId` INT NOT NULL,
+  `deptName` VARCHAR(45) NULL,
+  PRIMARY KEY (`departmentId`));
+
+
+CREATE TABLE `university_30603a`.`courses` (
+  `course_id` INT NOT NULL AUTO_INCREMENT,
+  `course_name` VARCHAR(45) NOT NULL,
+  `department_id` INT NOT NULL,
+  PRIMARY KEY (`course_id`),
+  INDEX `department_id_idx` (`department_id` ASC) VISIBLE,
+  CONSTRAINT `department_id`
+    FOREIGN KEY (`department_id`)
+    REFERENCES `university_30603a`.`department` (`department_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+    CREATE TABLE `university_30603a`.`faculty` (
+  `faculty_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `phone` INT(10) NOT NULL,
+  `department_id` INT NOT NULL,
+  `course1_id` INT NOT NULL,
+  `course2_id` INT NULL,
+  `course3_id` INT NULL,
+  `course4_id` INT NULL,
+  PRIMARY KEY (`faculty_id`),
+  INDEX `faculty_department_id_idx` (`department_id` ASC) VISIBLE,
+  INDEX `faculty_course1_id_idx` (`course1_id` ASC) VISIBLE,
+  INDEX `faculty_course2_id_idx` (`course2_id` ASC) VISIBLE,
+  INDEX `faculty_course3_id_idx` (`course3_id` ASC) VISIBLE,
+  INDEX `faculty_course4_id_idx` (`course4_id` ASC) VISIBLE,
+  CONSTRAINT `faculty_department_id`
+    FOREIGN KEY (`department_id`)
+    REFERENCES `university_30603a`.`department` (`department_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `faculty_course1_id`
+    FOREIGN KEY (`course1_id`)
+    REFERENCES `university_30603a`.`courses` (`course_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `faculty_course2_id`
+    FOREIGN KEY (`course2_id`)
+    REFERENCES `university_30603a`.`courses` (`course_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `faculty_course3_id`
+    FOREIGN KEY (`course3_id`)
+    REFERENCES `university_30603a`.`courses` (`course_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `faculty_course4_id`
+    FOREIGN KEY (`course4_id`)
+    REFERENCES `university_30603a`.`courses` (`course_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('1', 'Biology');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('2', 'Computer Science');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('3', 'Mathematics');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('4', 'English Literature');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('5', 'Law');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('6', 'Physics');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('7', 'Art');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('8', 'Business');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('9', 'Psychology');
+INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('10', 'Music');
