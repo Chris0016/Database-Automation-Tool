@@ -1,10 +1,4 @@
 Biology,
-Computer Science,
 Mathematics,
-English Literature,
-Law,
-Physics,
-Art,
 Business,
-Psychology,
-Music,
+

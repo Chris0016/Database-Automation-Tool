@@ -13,7 +13,7 @@ CREATE TABLE `university_30603a`.`students` (
   PRIMARY KEY (`studentid`),
   UNIQUE INDEX `studentid_UNIQUE` (`studentid` ASC) VISIBLE);
 
-  CREATE TABLE `university_30603a`.`` (
+  CREATE TABLE `university_30603a`.`departments` (
   `departmentId` INT NOT NULL,
   `deptName` VARCHAR(45) NULL,
   PRIMARY KEY (`departmentId`));
@@ -85,3 +85,15 @@ INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALU
 INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('8', 'Business');
 INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('9', 'Psychology');
 INSERT INTO `university_30603a`.`department` (`department_id`, `dept_name`) VALUES ('10', 'Music');
+
+
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('1', 'Algebra', '3');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('2', 'Enligsh Lit', '4');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('3', 'Music 101', '10');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('4', 'Anatomy', '1');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('5', 'Marketing ', '8');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('6', 'Mental Analysis', '9');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('7', 'Justice', '5');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('8', 'Claying', '7');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('9', 'Programming', '2');
+INSERT INTO `university_30603a`.`courses` (`course_id`, `course_name`, `department_id`) VALUES ('10', 'Physics 101', '6');
