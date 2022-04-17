@@ -11,6 +11,7 @@ Download or create a single column csv file. This csv file will then be transfor
 
 <br />
 <br />
+
 ## Instructions to use:
 - Update Configs Files to your database. 
 
@@ -26,6 +27,7 @@ Order is important for array that holds all the strings. As they will be loaded 
 
 <br />
 <br />
+
 ## Version 1.1.0:
 
 Currently there are some issues or things that can be done better in the program.
@@ -40,6 +42,9 @@ For instance:
 	-Some pk values are not numbers(or even increment sequentially). Hence, having the 
 	option to treat the pkValues columns as an entity of the users choice is also a good idea. 
 
-Version 2.0:
+<br />
+<br />
+
+## Version 2.0:
 
 	-GUI interface might make the program easier? Web or native app? 
